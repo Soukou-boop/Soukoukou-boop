@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CediSwift FX | Premium Currency Exchange</title>
+<!-- Lucide Icons for modern UI -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* --- PREMIUM CSS STYLING --- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+--primary: #2563eb;
+--primary-hover: #1d4ed8;
+--bg-light: #f8fafc;
+--text-main: #0f172a;
+--text-muted: #64748b;
+--white: #ffffff;
+--shadow: 0 20px 50px -12px rgba(37, 99, 235, 0.1);
+--radius: 24px;
+--radius-lg: 40px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+font-family: 'Plus Jakarta Sans', sans-serif;
+background-color: var(--white);
+color: var(--text-main);
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+/* Navigation */
+nav {
+position: fixed;
+top: 0;
+width: 100%;
+height: 80px;
+background: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid #f1f5f9;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 5%;
+z-index: 1000;
+}
+
+.logo {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 24px;
+font-weight: 800;
+color: var(--text-main);
+text-decoration: none;
+}
+
+.logo span { color: var(--primary); }
+
+.btn-primary {
+background: var(--primary);
+color: white;
+padding: 12px 28px;
+border-radius: 50px;
+border: none;
+font-weight: 700;
+cursor: pointer;
+transition: 0.3s;
+box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* Hero Section */
+.hero {
+padding: 160px 5% 80px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+max-width: 1300px;
+margin: 0 auto;
+align-items: center;
+}
+
+.hero-content h1 {
+font-size: 64px;
+font-weight: 800;
+line-height: 1.1;
+margin-bottom: 24px;
+}
+
+.hero-content h1 span {
+background: linear-gradient(135deg, #2563eb, #3b82f6);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+/* Exchange Widget */
+.widget {
+background: var(--white);
+padding: 40px;
+border-radius: var(--radius-lg);
+box-shadow: var(--shadow);
+border: 1px solid #f1f5f9;
+position: relative;
+}
+
+.input-box {
+background: var(--bg-light);
+border: 1px solid #e2e8f0;
+border-radius: var(--radius);
+padding: 20px;
+display: flex;
+align-items: center;
+transition: 0.3s;
+}
+
+.currency-select {
+background: var(--white);
+padding: 10px 18px;
+border-radius: 16px;
+display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+border: 1px solid #f1f5f9;
+font-weight: 700;
+}
+
+/* Dropdown Menu */
+.dropdown {
+position: absolute;
+right: 20px;
+top: 100%;
+width: 260px;
+background: var(--white);
+border-radius: 20px;
+box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+z-index: 100;
+margin-top: 10px;
+max-height: 300px;
+overflow-y: auto;
+display: none;
+border: 1px solid #f1f5f9;
+}
+
+.dropdown.active { display: block; }
+
+.dropdown-item {
+padding: 15px 20px;
+display: flex;
+align-items: center;
+gap: 12px;
+cursor: pointer;
+transition: 0.2s;
+}
+
+.dropdown-item:hover { background: #eff6ff; }
+
+/* Swap Button */
+.swap-btn {
+width: 50px;
+height: 50px;
+background: var(--primary);
+color: white;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: -15px auto;
+position: relative;
+z-index: 10;
+border: 4px solid var(--white);
+cursor: pointer;
+transition: 0.5s;
+}
+
+/* Steps */
+.step { display: none; }
+.step.active { display: block; animation: fadeIn 0.5s ease; }
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Payout Methods */
+.payout-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 15px;
+margin-bottom: 25px;
+}
+
+.payout-card {
+padding: 20px;
+border: 2px solid #f1f5f9;
+border-radius: 20px;
+text-align: center;
+cursor: pointer;
+}
+
+.payout-card.active {
+border-color: var(--primary);
+background: #eff6ff;
+color: var(--primary);
+}
+
+@media (max-width: 968px) {
+.hero { grid-template-columns: 1fr; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+<a href="#" class="logo"><i data-lucide="arrow-right-left"></i>CediSwift<span>FX</span></a>
+<button class="btn-primary">Get Started</button>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+<h1>Exchange Any <span>Currency</span> to MoMo.</h1>
+<p>The premium choice for foreigners in Ghana. Exchange USD, EUR, or GHS instantly to your Mobile Money or Wave Côte d'Ivoire account.</p>
+</div>
+
+<!-- Exchange Widget -->
+<div class="widget">
+
+<!-- STEP 1: EXCHANGE -->
+<div id="step-1" class="step active">
+<div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+<h2 style="font-weight: 800;">Exchange</h2>
+<span style="color: #16a34a; font-weight: 700;">Live Rates</span>
+</div>
+
+<div class="input-group">
+<label style="font-weight: 700; color: var(--text-muted); font-size: 14px;">You Send</label>
+<div class="input-box">
+<input type="number" id="send-amount" value="100" oninput="calculate()" style="border: none; background: transparent; font-size: 28px; font-weight: 700; outline: none; flex: 1;">
+<div class="currency-select" onclick="toggleDropdown('from-dropdown')">
+<span id="from-flag">🇺🇸</span> <span id="from-code">USD</span> <i data-lucide="chevron-down"></i>
+</div>
+<div id="from-dropdown" class="dropdown"></div>
+</div>
+</div>
+
+<div class="swap-btn" onclick="swapCurrencies()"><i data-lucide="arrow-right-left"></i></div>
+
+<div class="input-group" style="margin-top: 20px;">
+<label style="font-weight: 700; color: var(--text-muted); font-size: 14px;">You Receive</label>
+<div class="input-box">
+<div id="receive-amount" style="font-size: 28px; font-weight: 700; flex: 1;">1,345.00</div>
+<div class="currency-select" onclick="toggleDropdown('to-dropdown')">
+<span id="to-flag">🇬🇭</span> <span id="to-code">GHS</span> <i data-lucide="chevron-down"></i>
+</div>
+<div id="to-dropdown" class="dropdown"></div>
+</div>
+</div>
+
+<div style="background: #eff6ff; padding: 20px; border-radius: 20px; margin: 30px 0;">
+<div style="display: flex; justify-content: space-between; font-size: 14px;">
+<span style="color: #64748b;">Rate</span>
+<span id="rate-text" style="color: #2563eb; font-weight: 800;">1 USD = 13.45 GHS</span>
+</div>
+</div>
+
+<button class="btn-primary" style="width: 100%; padding: 20px;" onclick="goToStep(2)">Proceed to Transaction</button>
+</div>
+
+<!-- STEP 2: DETAILS -->
+<div id="step-2" class="step">
+<button onclick="goToStep(1)" style="background: none; border: none; color: var(--primary); font-weight: 800; cursor: pointer; margin-bottom: 20px;">Back</button>
+<h2 style="font-weight: 800; margin-bottom: 20px;">Payout Details</h2>
+<div class="payout-grid">
+<div class="payout-card active" onclick="selectPayout('momo', this)"><i data-lucide="smartphone"></i><p>MTN MoMo</p></div>
+<div class="payout-card" onclick="selectPayout('wave', this)"><i data-lucide="wallet"></i><p>Wave CI</p></div>
+</div>
+<div class="input-box"><input type="text" id="account-number" placeholder="054 123 4567"></div>
+<button class="btn-primary" style="width: 100%; margin-top: 20px; padding: 20px;" onclick="goToStep(3)">Complete Order</button>
+</div>
+
+<!-- STEP 3: SUCCESS -->
+<div id="step-3" class="step" style="text-align: center; padding: 40px 0;">
+<i data-lucide="check-circle" style="width: 60px; height: 60px; color: #16a34a; margin-bottom: 20px;"></i>
+<h2 style="font-weight: 800;">Order Placed!</h2>
+<p style="color: var(--text-muted); margin: 15px 0;">Funds will arrive in 2-5 minutes.</p>
+<button class="btn-primary" onclick="location.reload()">Done</button>
+</div>
+</div>
+</section>
+
+<script>
+lucide.createIcons();
+
+// 1. DATA: Currencies & Rates
+const CURRENCIES = [
+{ code: 'GHS', name: 'Ghanaian Cedi', flag: '🇬🇭', rate: 1 },
+{ code: 'USD', name: 'US Dollar', flag: '🇺🇸', rate: 13.45 },
+{ code: 'EUR', name: 'Euro', flag: '🇪🇺', rate: 14.58 },
+{ code: 'XOF', name: 'CFA Franc (West)', flag: '🇨🇮', rate: 0.022 },
+{ code: 'XAF', name: 'CFA Franc (Central)', flag: '🇨🇲', rate: 0.022 },
+{ code: 'NGN', name: 'Nigerian Naira', flag: '🇳🇬', rate: 0.009 },
+{ code: 'GNF', name: 'Guinean Franc', flag: '🇬🇳', rate: 0.0015 },
+];
+
+let fromCurrency = CURRENCIES[1]; // USD
+let toCurrency = CURRENCIES[0]; // GHS
+
+// 2. LOGIC: Dropdowns
+function initDropdowns() {
+const fromList = document.getElementById('from-dropdown');
+const toList = document.getElementById('to-dropdown');
+CURRENCIES.forEach(c => {
+const item = `<div class="dropdown-item" onclick="selectCurrency('${c.code}', event)"><span class="flag">${c.flag}</span><div class="info"><p>${c.code}</p><p>${c.name}</p></div></div>`;
+fromList.innerHTML += item; toList.innerHTML += item;
+});
+}
+
+function toggleDropdown(id) {
+document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+
+function selectCurrency(code, event) {
+const dropdown = event.target.closest('.dropdown');
+const type = dropdown.id.split('-')[0];
+const currency = CURRENCIES.find(c => c.code === code);
+if (type === 'from') fromCurrency = currency; else toCurrency = currency;
+document.getElementById(`${type}-flag`).innerText = currency.flag;
+document.getElementById(`${type}-code`).innerText = currency.code;
+dropdown.classList.remove('active');
+calculate();
+}
+
+// 3. LOGIC: Calculations
+function calculate() {
+const amount = parseFloat(document.getElementById('send-amount').value) || 0;
+const currentRate = fromCurrency.rate / toCurrency.rate;
+const result = amount * currentRate;
+document.getElementById('receive-amount').innerText = result.toLocaleString(undefined, { minimumFractionDigits: 2 });
+document.getElementById('rate-text').innerText = `1 ${fromCurrency.code} = ${currentRate.toFixed(4)} ${toCurrency.code}`;
+}
+
+function swapCurrencies() {
+const temp = fromCurrency; fromCurrency = toCurrency; toCurrency = temp;
+document.getElementById('from-flag').innerText = fromCurrency.flag;
+document.getElementById('from-code').innerText = fromCurrency.code;
+document.getElementById('to-flag').innerText = toCurrency.flag;
+document.getElementById('to-code').innerText = toCurrency.code;
+calculate();
+}
+
+function goToStep(step) {
+document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+document.getElementById(`step-${step}`).classList.add('active');
+// --- API INTEGRATION: Call Paystack/Flutterwave here for Step 3 ---
+}
+
+function selectPayout(method, el) {
+document.querySelectorAll('.payout-card').forEach(c => c.classList.remove('active'));
+el.classList.add('active');
+}
+
+window.onclick = e => { if (!e.target.closest('.currency-select')) document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active')); }
+
+initDropdowns();
+calculate();
+</script>
+</body>
+</html>
