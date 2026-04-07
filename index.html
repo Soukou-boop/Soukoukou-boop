@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CediSwift FX | Premium Currency Exchange</title>
-<!-- Lucide Icons for modern UI -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-/* --- PREMIUM CSS STYLING --- */
+/* --- EXISTING STYLES + NEW ENHANCEMENTS --- */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -23,193 +22,71 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-font-family: 'Plus Jakarta Sans', sans-serif;
-background-color: var(--white);
-color: var(--text-main);
-line-height: 1.6;
-overflow-x: hidden;
-}
+body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--white); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
 /* Navigation */
-nav {
-position: fixed;
-top: 0;
-width: 100%;
-height: 80px;
-background: rgba(255, 255, 255, 0.8);
-backdrop-filter: blur(10px);
-border-bottom: 1px solid #f1f5f9;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 5%;
-z-index: 1000;
-}
-
-.logo {
-display: flex;
-align-items: center;
-gap: 10px;
-font-size: 24px;
-font-weight: 800;
-color: var(--text-main);
-text-decoration: none;
-}
-
+nav { position: fixed; top: 0; width: 100%; height: 80px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; z-index: 1000; }
+.logo { display: flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 800; color: var(--text-main); text-decoration: none; }
 .logo span { color: var(--primary); }
 
-.btn-primary {
-background: var(--primary);
-color: white;
-padding: 12px 28px;
-border-radius: 50px;
-border: none;
-font-weight: 700;
-cursor: pointer;
-transition: 0.3s;
-box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-}
-
-/* Hero Section */
-.hero {
-padding: 160px 5% 80px;
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 60px;
-max-width: 1300px;
-margin: 0 auto;
-align-items: center;
-}
-
-.hero-content h1 {
-font-size: 64px;
-font-weight: 800;
-line-height: 1.1;
-margin-bottom: 24px;
-}
-
-.hero-content h1 span {
-background: linear-gradient(135deg, #2563eb, #3b82f6);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-
-/* Exchange Widget */
-.widget {
-background: var(--white);
-padding: 40px;
-border-radius: var(--radius-lg);
-box-shadow: var(--shadow);
-border: 1px solid #f1f5f9;
-position: relative;
-}
-
-.input-box {
-background: var(--bg-light);
-border: 1px solid #e2e8f0;
-border-radius: var(--radius);
-padding: 20px;
+/* Quick Select Bar */
+.account-bar {
+margin-top: 100px;
+padding: 10px 5%;
 display: flex;
-align-items: center;
-transition: 0.3s;
+gap: 15px;
+overflow-x: auto;
+white-space: nowrap;
 }
-
-.currency-select {
-background: var(--white);
-padding: 10px 18px;
-border-radius: 16px;
+.account-chip {
+background: var(--bg-light);
+padding: 12px 20px;
+border-radius: 50px;
+border: 1px solid #e2e8f0;
+cursor: pointer;
 display: flex;
 align-items: center;
 gap: 10px;
-cursor: pointer;
-border: 1px solid #f1f5f9;
-font-weight: 700;
+transition: 0.3s;
+font-weight: 600;
+font-size: 14px;
 }
+.account-chip:hover { border-color: var(--primary); color: var(--primary); }
+.account-chip.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-/* Dropdown Menu */
-.dropdown {
-position: absolute;
-right: 20px;
-top: 100%;
-width: 260px;
-background: var(--white);
-border-radius: 20px;
-box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-z-index: 100;
-margin-top: 10px;
-max-height: 300px;
-overflow-y: auto;
-display: none;
-border: 1px solid #f1f5f9;
-}
+/* Hero & Widget */
+.hero { padding: 40px 5% 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1300px; margin: 0 auto; align-items: center; }
+.hero-content h1 { font-size: 56px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+.hero-content h1 span { background: linear-gradient(135deg, #2563eb, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.widget { background: var(--white); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow); border: 1px solid #f1f5f9; position: relative; }
 
+.input-box { background: var(--bg-light); border: 1px solid #e2e8f0; border-radius: var(--radius); padding: 20px; display: flex; align-items: center; transition: 0.3s; margin-bottom: 15px; }
+.currency-select { background: var(--white); padding: 10px 18px; border-radius: 16px; display: flex; align-items: center; gap: 10px; cursor: pointer; border: 1px solid #f1f5f9; font-weight: 700; }
+
+.dropdown { position: absolute; right: 20px; top: 100%; width: 260px; background: var(--white); border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); z-index: 100; margin-top: 10px; max-height: 300px; overflow-y: auto; display: none; border: 1px solid #f1f5f9; }
 .dropdown.active { display: block; }
-
-.dropdown-item {
-padding: 15px 20px;
-display: flex;
-align-items: center;
-gap: 12px;
-cursor: pointer;
-transition: 0.2s;
-}
-
+.dropdown-item { padding: 15px 20px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: 0.2s; }
 .dropdown-item:hover { background: #eff6ff; }
 
-/* Swap Button */
-.swap-btn {
-width: 50px;
-height: 50px;
-background: var(--primary);
-color: white;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-margin: -15px auto;
-position: relative;
-z-index: 10;
-border: 4px solid var(--white);
-cursor: pointer;
-transition: 0.5s;
-}
+.swap-btn { width: 50px; height: 50px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -15px auto; position: relative; z-index: 10; border: 4px solid var(--white); cursor: pointer; transition: 0.5s; }
 
-/* Steps */
+.btn-primary { background: var(--primary); color: white; padding: 15px 28px; border-radius: 50px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); width: 100%; }
+
+/* Modal Settings */
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+.modal.active { display: flex; }
+.modal-content { background: white; padding: 30px; border-radius: 30px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; }
+.settings-group { margin-bottom: 25px; padding: 20px; border: 1px solid #f1f5f9; border-radius: 20px; }
+.settings-label { font-weight: 800; margin-bottom: 15px; display: block; color: var(--primary); }
+
+select, input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; margin-bottom: 10px; }
+
+/* Step Management */
 .step { display: none; }
 .step.active { display: block; animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(10px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-/* Payout Methods */
-.payout-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 15px;
-margin-bottom: 25px;
-}
-
-.payout-card {
-padding: 20px;
-border: 2px solid #f1f5f9;
-border-radius: 20px;
-text-align: center;
-cursor: pointer;
-}
-
-.payout-card.active {
-border-color: var(--primary);
-background: #eff6ff;
-color: var(--primary);
-}
-
-@media (max-width: 968px) {
-.hero { grid-template-columns: 1fr; text-align: center; }
-}
+@media (max-width: 968px) { .hero { grid-template-columns: 1fr; text-align: center; } }
 </style>
 </head>
 <body>
@@ -217,28 +94,31 @@ color: var(--primary);
 <!-- Navigation -->
 <nav>
 <a href="#" class="logo"><i data-lucide="arrow-right-left"></i>CediSwift<span>FX</span></a>
-<button class="btn-primary">Get Started</button>
+<div style="display: flex; gap: 10px;">
+<button class="btn-primary" style="padding: 10px 20px; width: auto;" onclick="toggleModal(true)"><i data-lucide="settings"></i></button>
+</div>
 </nav>
+
+<!-- Quick Select Bar -->
+<div class="account-bar" id="quick-select-bar">
+<!-- Will be filled by JS -->
+</div>
 
 <!-- Hero Section -->
 <section class="hero">
 <div class="hero-content">
-<h1>Exchange Any <span>Currency</span> to MoMo.</h1>
-<p>The premium choice for foreigners in Ghana. Exchange USD, EUR, or GHS instantly to your Mobile Money or Wave Côte d'Ivoire account.</p>
+<h1>Fastest <span>Currency</span> to MoMo.</h1>
+<p>Premium exchange rates for travelers and expats. Connect your accounts once and swap in seconds.</p>
 </div>
 
 <!-- Exchange Widget -->
 <div class="widget">
-
 <!-- STEP 1: EXCHANGE -->
 <div id="step-1" class="step active">
-<div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
-<h2 style="font-weight: 800;">Exchange</h2>
-<span style="color: #16a34a; font-weight: 700;">Live Rates</span>
-</div>
+<h2 style="font-weight: 800; margin-bottom: 20px;">Exchange</h2>
 
 <div class="input-group">
-<label style="font-weight: 700; color: var(--text-muted); font-size: 14px;">You Send</label>
+<label style="font-weight: 700; color: var(--text-muted); font-size: 13px;">You Send</label>
 <div class="input-box">
 <input type="number" id="send-amount" value="100" oninput="calculate()" style="border: none; background: transparent; font-size: 28px; font-weight: 700; outline: none; flex: 1;">
 <div class="currency-select" onclick="toggleDropdown('from-dropdown')">
@@ -250,8 +130,8 @@ color: var(--primary);
 
 <div class="swap-btn" onclick="swapCurrencies()"><i data-lucide="arrow-right-left"></i></div>
 
-<div class="input-group" style="margin-top: 20px;">
-<label style="font-weight: 700; color: var(--text-muted); font-size: 14px;">You Receive</label>
+<div class="input-group">
+<label style="font-weight: 700; color: var(--text-muted); font-size: 13px;">You Receive</label>
 <div class="input-box">
 <div id="receive-amount" style="font-size: 28px; font-weight: 700; flex: 1;">1,345.00</div>
 <div class="currency-select" onclick="toggleDropdown('to-dropdown')">
@@ -261,61 +141,116 @@ color: var(--primary);
 </div>
 </div>
 
-<div style="background: #eff6ff; padding: 20px; border-radius: 20px; margin: 30px 0;">
-<div style="display: flex; justify-content: space-between; font-size: 14px;">
-<span style="color: #64748b;">Rate</span>
-<span id="rate-text" style="color: #2563eb; font-weight: 800;">1 USD = 13.45 GHS</span>
-</div>
+<div style="background: #eff6ff; padding: 15px; border-radius: 15px; margin: 20px 0; text-align: center;">
+<span id="rate-text" style="color: #2563eb; font-weight: 800; font-size: 14px;">1 USD = 13.45 GHS</span>
 </div>
 
-<button class="btn-primary" style="width: 100%; padding: 20px;" onclick="goToStep(2)">Proceed to Transaction</button>
+<button class="btn-primary" onclick="goToStep(2)">Continue</button>
 </div>
 
 <!-- STEP 2: DETAILS -->
 <div id="step-2" class="step">
-<button onclick="goToStep(1)" style="background: none; border: none; color: var(--primary); font-weight: 800; cursor: pointer; margin-bottom: 20px;">Back</button>
+<button onclick="goToStep(1)" style="background: none; border: none; color: var(--primary); font-weight: 800; cursor: pointer; margin-bottom: 20px; display: flex; align-items: center; gap: 5px;"><i data-lucide="arrow-left" style="width:16px"></i> Back</button>
 <h2 style="font-weight: 800; margin-bottom: 20px;">Payout Details</h2>
-<div class="payout-grid">
-<div class="payout-card active" onclick="selectPayout('momo', this)"><i data-lucide="smartphone"></i><p>MTN MoMo</p></div>
-<div class="payout-card" onclick="selectPayout('wave', this)"><i data-lucide="wallet"></i><p>Wave CI</p></div>
+
+<div class="input-group">
+<label style="font-weight: 700; color: var(--text-muted); font-size: 13px;">Recipient Method</label>
+<select id="final-method" style="margin-top: 10px; padding: 15px; font-weight: 600;">
+<option value="momo">MTN MoMo</option>
+<option value="wave">Wave</option>
+<option value="moneygram">MoneyGram</option>
+<option value="bank">Bank Transfer</option>
+<option value="visa">Visa / Mastercard</option>
+</select>
 </div>
-<div class="input-box"><input type="text" id="account-number" placeholder="054 123 4567"></div>
-<button class="btn-primary" style="width: 100%; margin-top: 20px; padding: 20px;" onclick="goToStep(3)">Complete Order</button>
+
+<div class="input-group" style="margin-top: 15px;">
+<label style="font-weight: 700; color: var(--text-muted); font-size: 13px;">Phone / Account Number</label>
+<div class="input-box">
+<input type="text" id="final-account" placeholder="Enter details..." style="border: none; background: transparent; font-size: 18px; font-weight: 600; outline: none; width: 100%;">
+</div>
+</div>
+
+<button class="btn-primary" style="margin-top: 20px;" onclick="goToStep(3)">Confirm Transaction</button>
 </div>
 
 <!-- STEP 3: SUCCESS -->
 <div id="step-3" class="step" style="text-align: center; padding: 40px 0;">
 <i data-lucide="check-circle" style="width: 60px; height: 60px; color: #16a34a; margin-bottom: 20px;"></i>
-<h2 style="font-weight: 800;">Order Placed!</h2>
-<p style="color: var(--text-muted); margin: 15px 0;">Funds will arrive in 2-5 minutes.</p>
-<button class="btn-primary" onclick="location.reload()">Done</button>
+<h2 style="font-weight: 800;">Processing Order</h2>
+<p style="color: var(--text-muted); margin: 15px 0;">We are sending the funds to your selected account. ETA: 2-5 mins.</p>
+<button class="btn-primary" onclick="location.reload()">New Exchange</button>
 </div>
 </div>
 </section>
 
+<!-- Settings Modal -->
+<div class="modal" id="settings-modal">
+<div class="modal-content">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+<h2 style="font-weight: 800;">My Saved Accounts</h2>
+<button onclick="toggleModal(false)" style="background: none; border: none; cursor: pointer;"><i data-lucide="x"></i></button>
+</div>
+
+<!-- Account 1 -->
+<div class="settings-group">
+<span class="settings-label">Primary Account</span>
+<input type="text" id="acc1-name" placeholder="Label (e.g. My MTN)">
+<input type="text" id="acc1-number" placeholder="Phone / Account Number">
+<select id="acc1-method">
+<option value="momo">MTN MoMo</option>
+<option value="wave">Wave</option>
+<option value="moneygram">MoneyGram</option>
+<option value="bank">Bank Transfer</option>
+<option value="visa">Visa Card</option>
+</select>
+</div>
+
+<!-- Account 2 -->
+<div class="settings-group">
+<span class="settings-label">Secondary Account</span>
+<input type="text" id="acc2-name" placeholder="Label (e.g. Wave CI)">
+<input type="text" id="acc2-number" placeholder="Phone / Account Number">
+<select id="acc2-method">
+<option value="momo">MTN MoMo</option>
+<option value="wave">Wave</option>
+<option value="moneygram">MoneyGram</option>
+<option value="bank">Bank Transfer</option>
+<option value="visa">Visa Card</option>
+</select>
+</div>
+
+<button class="btn-primary" onclick="saveSettings()">Save Preferences</button>
+</div>
+</div>
+
 <script>
 lucide.createIcons();
 
-// 1. DATA: Currencies & Rates
+// --- CURRENCY DATA ---
 const CURRENCIES = [
 { code: 'GHS', name: 'Ghanaian Cedi', flag: '🇬🇭', rate: 1 },
 { code: 'USD', name: 'US Dollar', flag: '🇺🇸', rate: 13.45 },
 { code: 'EUR', name: 'Euro', flag: '🇪🇺', rate: 14.58 },
-{ code: 'XOF', name: 'CFA Franc (West)', flag: '🇨🇮', rate: 0.022 },
-{ code: 'XAF', name: 'CFA Franc (Central)', flag: '🇨🇲', rate: 0.022 },
+{ code: 'XOF', name: 'CFA Franc', flag: '🇨🇮', rate: 0.022 },
 { code: 'NGN', name: 'Nigerian Naira', flag: '🇳🇬', rate: 0.009 },
-{ code: 'GNF', name: 'Guinean Franc', flag: '🇬🇳', rate: 0.0015 },
 ];
 
-let fromCurrency = CURRENCIES[1]; // USD
-let toCurrency = CURRENCIES[0]; // GHS
+let fromCurrency = CURRENCIES[1];
+let toCurrency = CURRENCIES[0];
 
-// 2. LOGIC: Dropdowns
+// --- INITIALIZATION ---
+window.onload = () => {
+initDropdowns();
+loadSettings();
+calculate();
+};
+
 function initDropdowns() {
 const fromList = document.getElementById('from-dropdown');
 const toList = document.getElementById('to-dropdown');
 CURRENCIES.forEach(c => {
-const item = `<div class="dropdown-item" onclick="selectCurrency('${c.code}', event)"><span class="flag">${c.flag}</span><div class="info"><p>${c.code}</p><p>${c.name}</p></div></div>`;
+const item = `<div class="dropdown-item" onclick="selectCurrency('${c.code}', event)"><span class="flag">${c.flag}</span><div class="info"><p style="font-weight:700">${c.code}</p></div></div>`;
 fromList.innerHTML += item; toList.innerHTML += item;
 });
 }
@@ -336,7 +271,6 @@ dropdown.classList.remove('active');
 calculate();
 }
 
-// 3. LOGIC: Calculations
 function calculate() {
 const amount = parseFloat(document.getElementById('send-amount').value) || 0;
 const currentRate = fromCurrency.rate / toCurrency.rate;
@@ -357,18 +291,83 @@ calculate();
 function goToStep(step) {
 document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
 document.getElementById(`step-${step}`).classList.add('active');
-// --- API INTEGRATION: Call Paystack/Flutterwave here for Step 3 ---
 }
 
-function selectPayout(method, el) {
-document.querySelectorAll('.payout-card').forEach(c => c.classList.remove('active'));
-el.classList.add('active');
+// --- SETTINGS & ACCOUNTS LOGIC ---
+
+function toggleModal(show) {
+document.getElementById('settings-modal').classList.toggle('active', show);
 }
 
-window.onclick = e => { if (!e.target.closest('.currency-select')) document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active')); }
+function saveSettings() {
+const data = {
+acc1: {
+name: document.getElementById('acc1-name').value || 'Account 1',
+num: document.getElementById('acc1-number').value,
+method: document.getElementById('acc1-method').value
+},
+acc2: {
+name: document.getElementById('acc2-name').value || 'Account 2',
+num: document.getElementById('acc2-number').value,
+method: document.getElementById('acc2-method').value
+}
+};
+localStorage.setItem('cediswift_accounts', JSON.stringify(data));
+toggleModal(false);
+loadSettings();
+}
 
-initDropdowns();
-calculate();
+function loadSettings() {
+const saved = localStorage.getItem('cediswift_accounts');
+const bar = document.getElementById('quick-select-bar');
+bar.innerHTML = '';
+
+if (saved) {
+const data = JSON.parse(saved);
+
+// Update Modal Inputs
+document.getElementById('acc1-name').value = data.acc1.name;
+document.getElementById('acc1-number').value = data.acc1.num;
+document.getElementById('acc1-method').value = data.acc1.method;
+document.getElementById('acc2-name').value = data.acc2.name;
+document.getElementById('acc2-number').value = data.acc2.num;
+document.getElementById('acc2-method').value = data.acc2.method;
+
+// Create Chips for Top Bar
+[data.acc1, data.acc2].forEach((acc, index) => {
+if (acc.num) {
+const chip = document.createElement('div');
+chip.className = 'account-chip';
+chip.innerHTML = `<i data-lucide="user"></i> ${acc.name} (${acc.method.toUpperCase()})`;
+chip.onclick = () => autoFillAccount(acc);
+bar.appendChild(chip);
+}
+});
+lucide.createIcons();
+} else {
+bar.innerHTML = '<p style="font-size:12px; color:var(--text-muted)">No saved accounts. Click settings to add your details.</p>';
+}
+}
+
+function autoFillAccount(acc) {
+// Highlight chosen chip
+document.querySelectorAll('.account-chip').forEach(c => c.classList.remove('active'));
+event.currentTarget.classList.add('active');
+
+// Fill Step 2
+document.getElementById('final-method').value = acc.method;
+document.getElementById('final-account').value = acc.num;
+
+// Visual feedback
+alert(`Account "${acc.name}" selected for payout!`);
+}
+
+// Close dropdowns on click outside
+window.onclick = e => {
+if (!e.target.closest('.currency-select')) {
+document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active'));
+}
+}
 </script>
 </body>
 </html>
